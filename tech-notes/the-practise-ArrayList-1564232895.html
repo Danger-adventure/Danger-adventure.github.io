@@ -31,9 +31,9 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>归档- 2019 - 说it</title>
+<title>删除arraylist中的数据 - 说it</title>
 
-<meta name="keywords" content="说IT，技术博客，原创IT博客">
+<meta name="keywords" content="java">
 
 <meta name="description " content>
 
@@ -122,8 +122,22 @@
 
             <div class="page-title">
     <ul>
-        <li><a href="/" data-name="首页" title="Back Home">首页</a></li>
-        <li><a href="/tags" data-name="标签云" title="标签云">标签</a></li>
+        <li><a href="/">最近</a></li>
+        
+            
+                <li class="active">
+                    <a href="/categories/tech-notes" data-name="技术">技术</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/humanities" data-name="人文">人文</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/others" data-name="其他">其他</a>
+                </li>
+            
+        
         <li class="page-search">
     <form id="search" class="search-form">
         <input type="text" readonly="readonly" id="local-search-input-tip" placeholder="读物检索~">
@@ -136,103 +150,82 @@
 <div class="main-inner">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
-            <h3 class="post-title">很好，目前已有9篇文章，继续努力(ง •_•)ง</h3>
-        </div>
-        
-
-        <div class="post-content markdown-body" itemprop="articleBody">
-            <div class="archives">
-                
-                
-                
-                
-                
-                <div class="archives-item">
-                    <h2>2019年07月</h2>
-                    <ul class="archives_list">
-                        
-                        <li>27日23:42:21
-                            <a href="/tech-notes/the-practise-ArrayList-1564242141.html">二叉树排序-遍历</a>
-                            
-                        </li>
-                        
-                
-                
-                
-                        <li>27日21:08:15
-                            <a href="/tech-notes/the-practise-ArrayList-1564232895.html">删除ArrayList中的数据</a>
-                            
-                        </li>
-                        
-                
-                
-                
-                        <li>20日20:44:42
-                            <a href="/others/the-test-others-1563626682.html">其他测试</a>
-                            
-                        </li>
-                        
-                
-                
-                
-                        <li>20日20:26:50
-                            <a href="/humanities/first-daliy-note-1563625610.html">开始记录-学习日记</a>
-                            
-                        </li>
-                        
-                
-                
-                
-                        <li>17日22:38:31
-                            <a href="/tech-notes/the-hexo-normal-1563374311.html">hexo常用语句</a>
-                            
-                        </li>
-                        
-                
-                
-                
-                        <li>17日22:36:14
-                            <a href="/tech-notes/the-test-normal-1563374174.html">测试2</a>
-                            
-                        </li>
-                        
-                
-                
-                
-                        <li>01日20:22:30
-                            <a href="/tech-notes/the-test-null.html">测试</a>
-                            
-                        </li>
-                        
-                
-                
-                
-                        <li>01日18:18:28
-                            <a href="/tech-notes/first-practise-null.html">hexo练习</a>
-                            
-                        </li>
-                        
-                
-                
-                
-                        <li>01日17:30:11
-                            <a href="/tech-notes/first-hexo-undefined.html">hexo发布文章</a>
-                            
-                        </li>
-                        
-                    </ul>
-                </div>
-                
-                
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://shuoit.net" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://shuoit.net" target="_blank">小D</a>
+                    <span title="最后编辑于&nbsp;2019-07-27">2019-07-27</span>
+                </p>
+                <p>初出茅庐</p>
+            </div>
+            <h2 class="post-title">删除ArrayList中的数据</h2>
+            <div class="post-meta">
+                本文共计1113个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
+        <div class="post-content markdown-body">
+            <p>首先初始化一个Hero集合，里面放100个Hero对象，名称分别是从<br>hero 0<br>hero 1<br>hero 2<br>…<br>hero 99.</p>
+<p>通过遍历的手段，删除掉名字编号是8的倍数的对象</p>
+<blockquote>
+<p>这个练习的考点是，不能够在使用Iterator和增强for循环遍历数据的同时，删除数据，否则会抛出<strong>ConcurrentModificationException</strong></p>
+</blockquote>
+<blockquote>
+<p>解决办法，是准备一个临时容器，专门用来保存需要删除的对象。 然后再删掉</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">package collection;</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.List;</span><br><span class="line"> </span><br><span class="line">import charactor.Hero;</span><br><span class="line"> </span><br><span class="line">public class TestCollection &#123;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        List&lt;Hero&gt; heros = new ArrayList&lt;Hero&gt;();</span><br><span class="line"> </span><br><span class="line">        // 放100个Hero进入容器</span><br><span class="line">        for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">            heros.add(new Hero(&quot;hero name &quot; + i));</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        //准备一个容器，专门用来装要删除的对象</span><br><span class="line">        List&lt;Hero&gt; deletingHeros = new ArrayList&lt;&gt;();</span><br><span class="line"> </span><br><span class="line">        for (Hero h : heros) &#123;</span><br><span class="line">            int id = Integer.parseInt(h.name.substring(10));</span><br><span class="line">            if (0 == id % 8)</span><br><span class="line">                deletingHeros.add(h);</span><br><span class="line">        &#125;</span><br><span class="line">        for (Hero h : deletingHeros) &#123;</span><br><span class="line">            heros.remove(h);</span><br><span class="line">        &#125;</span><br><span class="line">    //heros.removeAll(deletingHeros); //直接通过removeAll删除多个Hero对象</span><br><span class="line">        System.out.println(heros);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/java/">java</a>
+            
+        </div>
+        
     </article>
+    
+    <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+
+    
+    
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+             */
+            var disqus_config = function () {
+                this.page.url = 'https://Danger-adventure.github.io/tech-notes/the-practise-ArrayList-1564232895.html';
+                this.page.identifier = 'tech-notes/the-practise-ArrayList-1564232895.html';
+            };
+            (function () { // DON'T EDIT BELOW THIS LINE
+                var d = document, disqus_shortname = 'shuoit', s = d.createElement('script');
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+
+
 </div>
+<script src="/js/busuanzi.pure.mini.js"></script>
+
 
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
-    <div class="footer-inner" style="text-align: left">
+    <div class="footer-inner" style="text-align: center">
         <p>
             <a href="/about" title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             <!-- 自定义链接 -->
