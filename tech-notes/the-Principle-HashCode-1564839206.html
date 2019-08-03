@@ -31,9 +31,9 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>标签 - java - 说it</title>
+<title>hashcode原理，为什么hashmap那么快？ - 说it</title>
 
-<meta name="keywords" content="说IT，技术博客，原创IT博客">
+<meta name="keywords" content="java">
 
 <meta name="description " content>
 
@@ -122,21 +122,21 @@
 
             <div class="page-title">
     <ul>
-        <li class>
-            <a href="/" data-name="最近">最近</a>
-        </li>
+        <li><a href="/">最近</a></li>
         
-        <li class>
-            <a href="/categories/tech-notes" data-name="技术">技术</a>
-        </li>
-        
-        <li class>
-            <a href="/categories/humanities" data-name="人文">人文</a>
-        </li>
-        
-        <li class>
-            <a href="/categories/others" data-name="其他">其他</a>
-        </li>
+            
+                <li class="active">
+                    <a href="/categories/tech-notes" data-name="技术">技术</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/humanities" data-name="人文">人文</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/others" data-name="其他">其他</a>
+                </li>
+            
         
         <li class="page-search">
     <form id="search" class="search-form">
@@ -148,156 +148,88 @@
     </ul>
 </div>
 <div class="main-inner">
-    
-        
-            
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://shuoit.net" target="_blank">
-                <strong>小D</strong>
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://shuoit.net" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://shuoit.net" target="_blank">小D</a>
+                    <span title="最后编辑于&nbsp;2019-08-03">2019-08-03</span>
+                </p>
+                <p>初出茅庐</p>
+            </div>
+            <h2 class="post-title">HashCode原理，为什么HashMap那么快？</h2>
+            <div class="post-meta">
+                本文共计646个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>HashCode作为一个算法，简单来说它就是把一串字符串变成一串数字仅此而已<br>以下是JavaAPI提供的String的HashCode生成方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]</span><br></pre></td></tr></table></figure>
+
+<p>我们不需要去理解这个算法，或者叫你去写<br>那么问题来了，它跟HashMap有什么关系？<br>众所周知，HashMap的特性是键值对，那么键值对背后究竟是怎么存储的呢？<br>我们可以通过一个case来理解其中的联系<br>设计一个HashMap类(LinkedList)</p>
+<blockquote>
+<p>设计一个put(String key,Object value)方法</p>
+</blockquote>
+<p>通过HashCode算法得到key对应的hashcode码，把它作为下标，定位到数组相对应位置<br>如果该位置没有数据，则把字符串和对象组合成键值对Entry，再创建一个LinkedList，把键值对，放进LinkedList中，最后把LinkedList 保存在这个位置。<br>如果该位置有数据，一定是一个LinkedList,则把字符串和对象组合成键值对Entry，插入到LinkedList后面。</p>
+<blockquote>
+<p>设计 Object get(String key) 方法</p>
+</blockquote>
+<p>通过HashCode算法得到key对应的hashcode码，把它作为下标，定位到数组相对应位置<br>如果这个位置没有数据，则返回空<br>如果这个位置有数据，则挨个比较其中键值对的键-字符串，是否equals，找到匹配的，把键值对的值，返回出去。找不到匹配的，就返回空<br><img src="https://upload-images.jianshu.io/upload_images/14876243-ff5d3596d2a93cfb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/567/format/webp" alt="jpg"></p>
+<h2 id="空间换取时间的方法加快效率"><a href="#空间换取时间的方法加快效率" class="headerlink" title="空间换取时间的方法加快效率"></a>空间换取时间的方法加快效率</h2>
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
             </a>
-            <em>·</em>2019-08-03
-            
         </div>
-        <a class="post-title" href="/tech-notes/the-Principle-HashCode-1564839206.html" target="_blank" title="HashCode原理，为什么HashMap那么快？">HashCode原理，为什么HashMap那么快？</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://Danger-adventure.github.io/tags/java/" target="_blank">java</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        HashCode原理，为什么HashMap那么快？
-    </div>
-</article>
-
-
-
         
+        <div class="post-tags">标签：
             
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://shuoit.net" target="_blank">
-                <strong>小D</strong>
-            </a>
-            <em>·</em>2019-07-31
+            <a href="/tags/java/">java</a>
             
         </div>
-        <a class="post-title" href="/tech-notes/the-different-collection-1564584613.html" target="_blank" title="ArrayList与LinkedList的区别">ArrayList与LinkedList的区别</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://Danger-adventure.github.io/tags/java/" target="_blank">java</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        ArrayList与LinkedList的区别
-    </div>
-</article>
-
-
-
         
-            
-<article class="post">
+    </article>
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://shuoit.net" target="_blank">
-                <strong>小D</strong>
-            </a>
-            <em>·</em>2019-07-31
-            
-        </div>
-        <a class="post-title" href="/tech-notes/the-different-collection-1564583728.html" target="_blank" title="ArrList与HashSet的区别">ArrList与HashSet的区别</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://Danger-adventure.github.io/tags/java/" target="_blank">java</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        ArrList与HashSet的区别
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
+    <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://shuoit.net" target="_blank">
-                <strong>小D</strong>
-            </a>
-            <em>·</em>2019-07-27
-            
-        </div>
-        <a class="post-title" href="/tech-notes/the-practise-ArrayList-1564242141.html" target="_blank" title="二叉树排序-遍历">二叉树排序-遍历</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://Danger-adventure.github.io/tags/java/" target="_blank">java</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        二叉树排序-遍历
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://shuoit.net" target="_blank">
-                <strong>小D</strong>
-            </a>
-            <em>·</em>2019-07-27
-            
-        </div>
-        <a class="post-title" href="/tech-notes/the-practise-ArrayList-1564232895.html" target="_blank" title="删除ArrayList中的数据">删除ArrayList中的数据</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://Danger-adventure.github.io/tags/java/" target="_blank">java</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        删除ArrayList中的数据
-    </div>
-</article>
 
-
-
-        
     
+    
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+             */
+            var disqus_config = function () {
+                this.page.url = 'https://Danger-adventure.github.io/tech-notes/the-Principle-HashCode-1564839206.html';
+                this.page.identifier = 'tech-notes/the-Principle-HashCode-1564839206.html';
+            };
+            (function () { // DON'T EDIT BELOW THIS LINE
+                var d = document, disqus_shortname = 'shuoit', s = d.createElement('script');
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+
+
 </div>
+<script src="/js/busuanzi.pure.mini.js"></script>
 
 
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
-    <div class="footer-inner" style="text-align: left">
+    <div class="footer-inner" style="text-align: center">
         <p>
             <a href="/about" title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             <!-- 自定义链接 -->
