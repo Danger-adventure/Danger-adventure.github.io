@@ -31,11 +31,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>开始记录-学习日记 - 说it</title>
+<title>connectionpool构造方法和初始化 - 说it</title>
 
-<meta name="keywords" content="impression">
+<meta name="keywords" content="java">
 
-<meta name="description " content="一个练习">
+<meta name="description " content="数据库连接池">
 
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
@@ -125,11 +125,11 @@
         <li><a href="/">最近</a></li>
         
             
-                <li class>
+                <li class="active">
                     <a href="/categories/tech-notes" data-name="技术">技术</a>
                 </li>
             
-                <li class="active">
+                <li class>
                     <a href="/categories/humanities" data-name="人文">人文</a>
                 </li>
             
@@ -156,18 +156,30 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="https://shuoit.net" target="_blank">小D</a>
-                    <span title="最后编辑于&nbsp;2019-07-20">2019-07-20</span>
+                    <span title="最后编辑于&nbsp;2019-08-25">2019-08-25</span>
                 </p>
                 <p>初出茅庐</p>
             </div>
-            <h2 class="post-title">开始记录-学习日记</h2>
+            <h2 class="post-title">ConnectionPool构造方法和初始化</h2>
             <div class="post-meta">
-                本文共计49个字 |
+                本文共计2044个字 |
                 您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h1 id="第一次记录"><a href="#第一次记录" class="headerlink" title="第一次记录"></a>第一次记录</h1><h2 id="关于学习记录"><a href="#关于学习记录" class="headerlink" title="关于学习记录"></a>关于学习记录</h2><p>以后随机抽时间发布，但每星期至少两篇对于学习的感悟，以及值得记录的知识点。</p>
+            <ol>
+<li><p>ConnectionPool() 构造方法约定了这个连接池一共有多少连接</p>
+</li>
+<li><p>在init() 初始化方法中，创建了size条连接。 注意，这里不能使用try-with-resource这种自动关闭连接的方式，因为连接恰恰需要保持不关闭状态，供后续循环使用</p>
+</li>
+<li><p>getConnection， 判断是否为空，如果是空的就wait等待，否则就借用一条连接出去</p>
+</li>
+<li><p>returnConnection， 在使用完毕后，归还这个连接到连接池，并且在归还完毕后，调用notifyAll，通知那些等待的线程，有新的连接可以借用了<br>注：连接池设计用到了多线程的wait和notifyAll</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">package jdbc;</span><br><span class="line">  </span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.List;</span><br><span class="line">  </span><br><span class="line">public class ConnectionPool &#123;</span><br><span class="line">  </span><br><span class="line">    List&lt;Connection&gt; cs = new ArrayList&lt;Connection&gt;();</span><br><span class="line">  </span><br><span class="line">    int size;</span><br><span class="line">  </span><br><span class="line">    public ConnectionPool(int size) &#123;</span><br><span class="line">        this.size = size;</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    public void init() &#123;</span><br><span class="line">          </span><br><span class="line">        //这里恰恰不能使用try-with-resource的方式，因为这些连接都需要是&quot;活&quot;的，不要被自动关闭了</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">            for (int i = 0; i &lt; size; i++) &#123;</span><br><span class="line">                Connection c = DriverManager</span><br><span class="line">                        .getConnection(&quot;jdbc:mysql://127.0.0.1:3306/how2java?characterEncoding=UTF-8&quot;, &quot;root&quot;, &quot;admin&quot;);</span><br><span class="line">  </span><br><span class="line">                cs.add(c);</span><br><span class="line">  </span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">            // TODO Auto-generated catch block</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            // TODO Auto-generated catch block</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    public synchronized Connection getConnection() &#123;</span><br><span class="line">        while (cs.isEmpty()) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                this.wait();</span><br><span class="line">            &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                // TODO Auto-generated catch block</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Connection c = cs.remove(0);</span><br><span class="line">        return c;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    public synchronized void returnConnection(Connection c) &#123;</span><br><span class="line">        cs.add(c);</span><br><span class="line">        this.notifyAll();</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>相关连接<a href="http://how2j.cn/k/jdbc/jdbc-connection-pool/610.html#nowhere" target="_blank" rel="noopener">数据库连接池</a></p>
 
         </div>
         <div class="post-tool">
@@ -178,7 +190,7 @@
         
         <div class="post-tags">标签：
             
-            <a href="/tags/impression/">碎碎念</a>
+            <a href="/tags/mysql/">mysql</a>
             
         </div>
         
@@ -197,8 +209,8 @@
              *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
              */
             var disqus_config = function () {
-                this.page.url = 'https://Danger-adventure.github.io/humanities/first-daliy-note-1563625610.html';
-                this.page.identifier = 'humanities/first-daliy-note-1563625610.html';
+                this.page.url = 'https://Danger-adventure.github.io/tech-notes/the-way-connectionpool-1566740339.html';
+                this.page.identifier = 'tech-notes/the-way-connectionpool-1566740339.html';
             };
             (function () { // DON'T EDIT BELOW THIS LINE
                 var d = document, disqus_shortname = 'shuoit', s = d.createElement('script');
