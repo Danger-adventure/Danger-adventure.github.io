@@ -31,11 +31,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>分类 - 技术 - 说it</title>
+<title>java三大框架各自的作用 - 说it</title>
 
-<meta name="keywords" content="说IT，技术博客，原创IT博客">
+<meta name="keywords" content="java">
 
-<meta name="description " content>
+<meta name="description " content="框架作用总结">
 
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
@@ -122,21 +122,21 @@
 
             <div class="page-title">
     <ul>
-        <li class>
-            <a href="/" data-name="最近">最近</a>
-        </li>
+        <li><a href="/">最近</a></li>
         
-        <li class="active">
-            <a href="/categories/tech-notes" data-name="技术">技术</a>
-        </li>
-        
-        <li class>
-            <a href="/categories/humanities" data-name="人文">人文</a>
-        </li>
-        
-        <li class>
-            <a href="/categories/others" data-name="其他">其他</a>
-        </li>
+            
+                <li class="active">
+                    <a href="/categories/tech-notes" data-name="技术">技术</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/humanities" data-name="人文">人文</a>
+                </li>
+            
+                <li class>
+                    <a href="/categories/others" data-name="其他">其他</a>
+                </li>
+            
         
         <li class="page-search">
     <form id="search" class="search-form">
@@ -148,222 +148,83 @@
     </ul>
 </div>
 <div class="main-inner">
-    
-        
-            
-<article class="post">
-    
-    <!-- render the first if pics exists. -->
-    <div class="post-cover">
-        <a href="/tech-notes/the-practise-ArrayList-1564242141.html" target="_blank" title="二叉树排序-遍历" style="background-image:url(https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2595362298,2802985994&amp;fm=26&amp;gp=0.jpg)"></a>
-    </div>
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://shuoit.net" target="_blank">
-                <strong>小D</strong>
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://shuoit.net" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar">
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://shuoit.net" target="_blank">小D</a>
+                    <span title="最后编辑于&nbsp;2019-09-08">2019-09-08</span>
+                </p>
+                <p>初出茅庐</p>
+            </div>
+            <h2 class="post-title">java三大框架各自的作用</h2>
+            <div class="post-meta">
+                本文共计1537个字 |
+                您是第&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>一、Spring</p>
+<p>Spring是一个解决了许多在J2EE开发中常见的问题的强大框架。 Spring提供了管理业务对象的一致方法并且鼓励了注入对接口编程而不是对类编程的良好习惯。Spring的架构基础是基于使用JavaBean属性的Inversion of Control容器。然而，这仅仅是完整图景中的一部分：Spring在使用IoC容器作为构建完关注所有架构层的完整解决方案方面是独一无二的。 Spring提供了唯一的数据访问抽象，包括简单和有效率的JDBC框架，极大的改进了效率并且减少了可能的错误。Spring的数据访问架构还集成了Hibernate和其他O/R mapping解决方案。Spring还提供了唯一的事务管理抽象，它能够在各种底层事务管理技术，例如JTA或者JDBC事务提供一个一致的编程模型。Spring提供了一个用标准Java语言编写的AOP框架，它给POJOs提供了声明式的事务管理和其他企业事务–如果你需要–还能实现你自己的aspects。这个框架足够强大，使得应用程序能够抛开EJB的复杂性，同时享受着和传统EJB相关的关键服务。Spring还提供了可以和IoC容器集成的强大而灵活的MVC Web框架。</p>
+<p>二、STRUCTS</p>
+<p>Struts是一个基于Sun J2EE平台的MVC框架，主要是采用Servlet和JSP技术来实现的。由于Struts能充分满足应用开发的需求，简单易用，敏捷迅速，在过去的一年中颇受关注。Struts把Servlet、JSP、自定义标签和信息资源(message resources)整合到一个统一的框架中，开发人员利用其进行开发时不用再自己编码实现全套MVC模式，极大的节省了时间，所以说Struts是一个非常不错的应用框架。</p>
+<p>三、Hibernate</p>
+<p>Hibernate是一个开放源代码的对象关系映射框架，它对JDBC进行了非常轻量级的对象封装，使得Java程序员可以随心所欲的使用对象编程思维来操纵数据库。 Hibernate可以应用在任何使用JDBC的场合，既可以在Java的客户端程序实用，也可以在Servlet/JSP的Web应用中使用，最具革命意义的是，Hibernate可以在应用EJB的J2EE架构中取代CMP，完成数据持久化的重任。，Hibernate可以在应用EJB的J2EE架构中取代CMP，完成数据持久化的重任。映射很简单呀,就是页面的映射呀,多做点练习就会了,</p>
+<p>JAVA三大框架用来做WEN应用。 struts主要负责表示层的显示 spring利用它的IOC和AOP来处理控制业务（负责对数据库的操作） hibernate主要是数据的持久化到数据库 在用jsp的servlet做网页开发的时候有个web.xml的映射文件，里面有个mapping的标签就是用来做文件映射的。 当你在浏览器上输入URL地址的时候，文件就会根据你写的名称对应到一个java文件，根据java文件里编写的内容显示在浏览器上，就是一个网页，所以网页名字是随便写的，随便起的名字，不管你起的是.php .jsp .do还是其他的什么都对应这个java文件，这个java文件里的代码进行什么操作就干什么，显示一句话还是连接数据库还是跳转到其他页面等等，这个java文件把数据进行封装起到安全和便于管理的作用。其实这个java文件编译过来是.class的一个字节码文件，没有那么一个类似html嵌入标签和代码的网页文件。他与jsp文件区别就是jsp把代码嵌入到html标签中。 还有servlet或者struts中html表单的action中的提交名称对应一个java文件，struts一般是.do的，都和上面一样是映射。</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
             </a>
-            <em>·</em>2019-07-27
-            
         </div>
-        <a class="post-title" href="/tech-notes/the-practise-ArrayList-1564242141.html" target="_blank" title="二叉树排序-遍历">二叉树排序-遍历</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://Danger-adventure.github.io/tags/java/" target="_blank">java</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        二叉树排序-遍历
-    </div>
-</article>
-
-
-
         
+        <div class="post-tags">标签：
             
-<article class="post">
-    
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://shuoit.net" target="_blank">
-                <strong>小D</strong>
-            </a>
-            <em>·</em>2019-07-27
+            <a href="/tags/java/">java</a>
             
         </div>
-        <a class="post-title" href="/tech-notes/the-practise-ArrayList-1564232895.html" target="_blank" title="删除ArrayList中的数据">删除ArrayList中的数据</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://Danger-adventure.github.io/tags/java/" target="_blank">java</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        删除ArrayList中的数据
-    </div>
-</article>
-
-
-
         
-            
-<article class="post">
+    </article>
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://shuoit.net" target="_blank">
-                <strong>小D</strong>
-            </a>
-            <em>·</em>2019-07-17
-            
-        </div>
-        <a class="post-title" href="/tech-notes/the-hexo-normal-1563374311.html" target="_blank" title="hexo常用语句">hexo常用语句</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://Danger-adventure.github.io/tags/hexo/" target="_blank">hexo</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        hexo常用语句
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
+    <p style="text-align: center">本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://shuoit.net" target="_blank">
-                <strong>小D</strong>
-            </a>
-            <em>·</em>2019-07-17
-            
-        </div>
-        <a class="post-title" href="/tech-notes/the-test-normal-1563374174.html" target="_blank" title="测试2">测试2</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://Danger-adventure.github.io/tags/practise/" target="_blank">练习</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        测试2
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://shuoit.net" target="_blank">
-                <strong>小D</strong>
-            </a>
-            <em>·</em>2019-07-01
-            
-        </div>
-        <a class="post-title" href="/tech-notes/the-test-null.html" target="_blank" title="测试">测试</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://Danger-adventure.github.io/tags/practise/" target="_blank">练习</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        测试
-    </div>
-</article>
 
-
-
-        
-            
-<article class="post">
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://shuoit.net" target="_blank">
-                <strong>小D</strong>
-            </a>
-            <em>·</em>2019-07-01
-            
-        </div>
-        <a class="post-title" href="/tech-notes/first-practise-null.html" target="_blank" title="hexo练习">hexo练习</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://Danger-adventure.github.io/tags/practise/" target="_blank">练习</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        hexo练习
-    </div>
-</article>
-
-
-
-        
-            
-<article class="post">
     
-    <div class="post-header">
-        <div class="post-meta">
-            <a href="https://shuoit.net" target="_blank">
-                <strong>小D</strong>
-            </a>
-            <em>·</em>2019-07-01
-            
-        </div>
-        <a class="post-title" href="/tech-notes/first-hexo-undefined.html" target="_blank" title="hexo发布文章">hexo发布文章</a>
-        <div class="post-meta">
-            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
-            
-                <em>·</em>
-                <a href="https://Danger-adventure.github.io/tags/hexo/" target="_blank">hexo</a>
-            
-        </div>
-    </div>
-    <div class="post-desc">
-        hexo发布文章
-    </div>
-</article>
-
-
-
-        
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+             */
+            var disqus_config = function () {
+                this.page.url = 'https://Danger-adventure.github.io/tech-notes/the-use-frame-1567928488.html';
+                this.page.identifier = 'tech-notes/the-use-frame-1567928488.html';
+            };
+            (function () { // DON'T EDIT BELOW THIS LINE
+                var d = document, disqus_shortname = 'shuoit', s = d.createElement('script');
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     
+
+
 </div>
-
-<div id="btn-pager">
-    
-    <a class="extend prev" rel="prev" href="/categories/tech-notes/">上一页</a><a class="page-number" href="/categories/tech-notes/">1</a><span class="page-number current">2</span>
-</div>
+<script src="/js/busuanzi.pure.mini.js"></script>
 
 
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
-    <div class="footer-inner" style="text-align: left">
+    <div class="footer-inner" style="text-align: center">
         <p>
             <a href="/about" title="关于">关于</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             <!-- 自定义链接 -->
